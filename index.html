@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="random-pin-sceen" class="form-control" type="text">
+                    <button id="generate-random-pin" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="numberSceen" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div onclick="numberHandler('7')" class="button">7</div>
+                              <div onclick="numberHandler('8')" class="button">8</div>
+                              <div onclick="numberHandler('9')" class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="numberHandler('4')" class="button">4</div>
+                              <div onclick="numberHandler('5')" class="button">5</div>
+                              <div onclick="numberHandler('6')" class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="numberHandler('1')" class="button">1</div>
+                              <div onclick="numberHandler('2')" class="button">2</div>
+                              <div onclick="numberHandler('3')" class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button"><</div>
+                                <div onclick="numberHandler('0')" class="button">0</div>
+                                <div id="clear" class="button">C</div>
+                            </div>
+                            <div>
+                                <button id="pinCheck" type="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="wrongMessage" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="correctMessage" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+
+    <script>
+
+
+
+document.getElementById("clear").addEventListener("click", function(){
+      document.getElementById("numberSceen").value = ""
+})
+
+
+   document.getElementById("generate-random-pin").addEventListener("click", function(){
+    
+      const randomPin = document.getElementById("random-pin-sceen");
+      randomPin.value = Math.floor(1000 + Math.random() * 9000);
+
+         
+   });
+
+
+   document.getElementById("pinCheck").addEventListener("click", function(){
+
+          const randomPinSceen = document.getElementById("random-pin-sceen");
+          const numberSceen = document.getElementById("numberSceen");
+
+         if(randomPinSceen.value === numberSceen.value){
+                 document.getElementById("correctMessage").style.display = "block";
+                console.log(randomPinSceen.value , numberSceen.value)
+         } else{
+            document.getElementById("wrongMessage").style.display = "block";
+            document.getElementById("correctMessage").style.display = "none";
+         }
+
+         
+           
+   })
+
+
+   function numberHandler(num) {
+    const numberSceen = document.getElementById("numberSceen");
+        numberSceen.value += num;
+   }
+
+
+  
+
+    </script>
+</body>
+</html>
