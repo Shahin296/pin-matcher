@@ -37,13 +37,13 @@
                               <div onclick="numberHandler('3')" class="button">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button"><</div>
+                                <div id="backspace" class="button"><</div>
                                 <div onclick="numberHandler('0')" class="button">0</div>
                                 <div id="clear" class="button">C</div>
                             </div>
                             <div>
                                 <button id="pinCheck" type="submit" class="submit-btn">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <p class="action-left"><span id="tryLeft">3</span> <span id="tryleftText">try Left</span></p>
                             </div>
                     </div>
                 </div>
@@ -57,6 +57,16 @@
 
 
     <script>
+
+
+
+document.getElementById("backspace").addEventListener("click", function(){
+   
+     const numberSceen = document.getElementById("numberSceen");
+     numberSceen.value = numberSceen.value.toString().slice(0,-1);
+    
+    
+})
 
 
 
@@ -85,6 +95,21 @@ document.getElementById("clear").addEventListener("click", function(){
          } else{
             document.getElementById("wrongMessage").style.display = "block";
             document.getElementById("correctMessage").style.display = "none";
+            
+          
+            const tryLeft = document.getElementById("tryLeft");
+            if(tryLeft.innerHTML > 0){
+                tryLeft.innerHTML -= 1;
+            }
+           
+            if(tryLeft.innerHTML == 0){
+                document.getElementById("pinCheck").style.display = "none";
+               document.getElementById("tryleftText").innerHTML = "Try is over";
+               tryLeft.innerHTML = "";
+            } 
+            
+            
+
          }
 
          
